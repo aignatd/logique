@@ -1,4 +1,6 @@
 const mdlBooks = require('../models/booksmdl');
+const { Sequelize } = require('sequelize');
+const Op = Sequelize.Op;
 
 let listbooks = async (req, res, next) => {
 	try {
@@ -8,9 +10,25 @@ let listbooks = async (req, res, next) => {
 		var result;
 
 		if(req?.query?.search)
-			result = [];
+			result = await mdlBooks.findAll({
+				attributes: {
+					exclude: ['created_at', 'updated_at']
+				},
+				where: {
+					title: { [Op.like]: '%' + req.query.search + '%' },
+					author: { [Op.like]: '%' + req.query.search + '%' },
+					publishedYear: { [Op.like]: '%' + req.query.search + '%' },
+					genres: { [Op.like]: '%' + req.query.search + '%' }
+				},
+				offset: Number(req.query.page),
+				limit: Number(req.query.limit)
+			});
 		else
-			result = await mdlBooks.findAll({attributes: {exclude: ['created_at', 'updated_at']}});
+			result = await mdlBooks.findAll({
+				attributes: {
+					exclude: ['created_at', 'updated_at']
+				}
+			});
 
 		console.log("Result ->", result.length);
 
