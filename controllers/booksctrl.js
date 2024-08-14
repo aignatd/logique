@@ -59,13 +59,9 @@ let listbooks = async (req, res, next) => {
 let getbooks = async (req, res, next) => {
 	try {
 		console.log("---------- Get Book Data ----------");
-		console.log('Param field ->', req.params.field)
-		console.log('Param data ->', req.params.data)
+		console.log('Parameter id ->', req.params.id);
 
-		var jsonObj = {};
-		jsonObj[req.params.field] = req.params.data;
-
-		const result = await mdlBooks.findOne({ where: jsonObj, attributes: {exclude: ['created_at', 'updated_at']} });
+		const result = await mdlBooks.findOne({ where: { id: req.params.id }, attributes: {exclude: ['created_at', 'updated_at']} });
 		console.log("Result ->", result);
 
 		if (result) {
@@ -95,13 +91,9 @@ let getbooks = async (req, res, next) => {
 let delbooks = async (req, res, next) => {
 	try {
 		console.log("---------- Delete Book ----------");
-		console.log('Param field ->', req.params.field)
-		console.log('Param data ->', req.params.data)
+		console.log('Parameter id ->', req.params.id);
 
-		var jsonObj = {};
-		jsonObj[req.params.field] = req.params.data;
-
-		const result = await mdlBooks.destroy({ where: jsonObj });
+		const result = await mdlBooks.destroy({ where: { id: req.params.id } });
 		console.log("Result ->", result);
 
 		if (result == null || result == 0)
@@ -130,15 +122,11 @@ let patchbooks = async (req, res, next) => {
 	try {
 		console.log("---------- Update Book ----------");
 		console.log('Body ->', req.body)
-		console.log('Param field ->', req.params.field)
-		console.log('Param data ->', req.params.data)
-
-		var jsonObj = {};
-		jsonObj[req.params.field] = req.params.data;
+		console.log('Parameter id ->', req.params.id);
 
 		const [result] = await mdlBooks.update(
 			{ ...req.body },
-			{ where: jsonObj }
+			{ where: { id: req.params.id }}
 		)
 
 		console.log("Result ->", result);
