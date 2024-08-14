@@ -8,9 +8,9 @@ module.exports = db.define('books', {
   },
   title: { type: DataTypes.STRING(100) },
   author: { type: DataTypes.STRING(50) },
-  publishedYear: { type: DataTypes.INTEGER },
-  genres: { type: DataTypes.TEXT() },
-  stock: { type: DataTypes.INTEGER },
+  publishedYear: { type: DataTypes.INTEGER, validate: { len: [4, 4] }},
+  genres: { type: DataTypes.JSONB },
+  stock: { type: DataTypes.INTEGER, validate: { len: [0, 6] }},
 }, {
     freezeTableName: true,
     createdAt: 'created_at',
