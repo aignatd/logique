@@ -15,12 +15,13 @@ let listbooks = async (req, res, next) => {
 					exclude: ['created_at', 'updated_at']
 				},
 				where: {
-					title: { [Op.like]: '%' + req.query.search + '%' },
-					author: { [Op.like]: '%' + req.query.search + '%' },
-					publishedYear: { [Op.like]: '%' + req.query.search + '%' },
-					genres: { [Op.like]: '%' + req.query.search + '%' }
-				},
-				offset: Number(req.query.page),
+					[Op.or]: [
+					{ title: { [Op.like]: '%' + req.query.search + '%' }},
+					{ author: { [Op.like]: '%' + req.query.search + '%' }},
+					{ publishedYear: { [Op.like]: '%' + req.query.search + '%' }},
+					{ genres: { [Op.like]: '%' + req.query.search + '%' }}
+				]},
+				offset: Number(req.query.page) - 1,
 				limit: Number(req.query.limit)
 			});
 		else
