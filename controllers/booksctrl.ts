@@ -1,7 +1,7 @@
 import mdlBooks from '../models/booksmdl';
 import { Op } from 'sequelize';
 
-import { Request, Response, NextFunction } from 'express';
+import { Request, Response } from 'express';
 
 /**
  * This function retrieves a list of books based on the provided query parameters.
@@ -14,7 +14,7 @@ import { Request, Response, NextFunction } from 'express';
  *
  * @returns {Promise<void>} - A promise that resolves when the HTTP response is sent.
  */
-export async function listbooks(req: Request, res: Response, next: NextFunction): Promise<void> {
+export async function listbooks(req: Request, res: Response): Promise<void> {
 	try {
 		console.log("---------- Get Books List ----------");
 		console.log("Query ->", req.query);
@@ -85,7 +85,7 @@ export async function listbooks(req: Request, res: Response, next: NextFunction)
  * If no book is found, it sends a 404 Not Found response.
  * If an error occurs, it sends a 500 Internal Server Error response with the error details.
  */
-export async function getbooks(req: Request, res: Response, next: NextFunction): Promise<void>{
+export async function getbooks(req: Request, res: Response): Promise<void>{
 	try {
 		console.log("---------- Get Book Data ----------");
 		console.log('Parameter id ->', req.params.id);
@@ -134,7 +134,7 @@ export async function getbooks(req: Request, res: Response, next: NextFunction):
  * If no book is found, it sends a 404 Not Found response.
  * If an error occurs, it sends a 500 Internal Server Error response with the error details.
  */
-export async function delbooks(req: Request, res: Response, next: NextFunction): Promise<void> {
+export async function delbooks(req: Request, res: Response): Promise<void> {
 	try {
 		console.log("---------- Delete Book ----------");
 		console.log('Parameter id ->', req.params.id);
@@ -181,7 +181,7 @@ export async function delbooks(req: Request, res: Response, next: NextFunction):
  * If no book is found, it sends a 404 Not Found response.
  * If an error occurs, it sends a 500 Internal Server Error response with the error details.
  */
-export async function patchbooks(req: Request, res: Response, next: NextFunction): Promise<void> {
+export async function patchbooks(req: Request, res: Response): Promise<void> {
 	try {
 		console.log("---------- Update Book ----------");
 		console.log('Body ->', req.body)
