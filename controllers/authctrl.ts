@@ -1,7 +1,18 @@
 import authclass from '../classes/authclass';
 import { NextFunction, Request, Response } from 'express';
 
-export async function gettoken(req: Request, res: Response) { 
+/**
+ * This function handles the process of generating a token for a user.
+ * It takes a request and response object as parameters.
+ *
+ * @param req - The request object containing the user's credentials.
+ * @param res - The response object to send back the token and related information.
+ *
+ * @returns {Promise<void>} - The function does not return any value.
+ *
+ * @throws Will throw an error if there is an issue with the request or token generation.
+ */
+export async function gettoken(req: Request, res: Response): Promise<void> { 
 	try {
 		console.log("---------- Get Token ----------");
 
@@ -37,7 +48,19 @@ export async function gettoken(req: Request, res: Response) {
 	}
 };
 
-export async function checktoken(req: Request, res: Response, next: NextFunction) {
+/**
+ * This function is responsible for verifying the validity of a JWT token.
+ * It checks the token's existence, expiration, and validity.
+ *
+ * @param req - The request object containing the token in the 'authorization' header.
+ * @param res - The response object to send back the verification result and related information.
+ * @param next - The next middleware function in the request-response cycle.
+ *
+ * @returns {Promise<void>} - The function does not return any value.
+ *
+ * @throws Will throw an error if there is an issue with the request or token verification.
+ */
+export async function checktoken(req: Request, res: Response, next: NextFunction): Promise<void> {
 	try {
 		console.log("---------- Check Token ----------");
 

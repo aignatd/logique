@@ -7,6 +7,7 @@
     "debug": "nodemon app.js"
   },
   "dependencies": {
+    "@jest/types": "^29.6.3",
     "@types/sequelize": "^4.28.20",
     "@types/uuid": "^10.0.0",
     "connect-timeout": "^1.9.0",
