@@ -15,6 +15,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.gettoken = gettoken;
 exports.checktoken = checktoken;
 const authclass_1 = __importDefault(require("../classes/authclass"));
+/**
+ * This function handles the process of generating a token for a user.
+ * It takes a request and response object as parameters.
+ *
+ * @param req - The request object containing the user's credentials.
+ * @param res - The response object to send back the token and related information.
+ *
+ * @returns {Promise<void>} - The function does not return any value.
+ *
+ * @throws Will throw an error if there is an issue with the request or token generation.
+ */
 function gettoken(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -49,6 +60,18 @@ function gettoken(req, res) {
     });
 }
 ;
+/**
+ * This function is responsible for verifying the validity of a JWT token.
+ * It checks the token's existence, expiration, and validity.
+ *
+ * @param req - The request object containing the token in the 'authorization' header.
+ * @param res - The response object to send back the verification result and related information.
+ * @param next - The next middleware function in the request-response cycle.
+ *
+ * @returns {Promise<void>} - The function does not return any value.
+ *
+ * @throws Will throw an error if there is an issue with the request or token verification.
+ */
 function checktoken(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
