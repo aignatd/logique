@@ -12,7 +12,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-require('dotenv').config();
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config();
 const express_1 = __importDefault(require("express"));
 const connect_timeout_1 = __importDefault(require("connect-timeout"));
 const express_file_routing_1 = require("express-file-routing");
@@ -33,7 +34,7 @@ app.use((err, req, res, next) => __awaiter(void 0, void 0, void 0, function* () 
     }
     app.use((0, connect_timeout_1.default)(120000));
     app.use(haltOnTimedout);
-    function haltOnTimedout(req, res, next) {
+    function haltOnTimedout(req, Request, next) {
         if (!req.timedout)
             next();
     }

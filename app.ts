@@ -1,13 +1,14 @@
-require('dotenv').config();
+import dotenv from 'dotenv';
+dotenv.config();
 
-import express from 'express';
+import express, { NextFunction, Request, Response, Application } from 'express';
 import timeout from 'connect-timeout';
 
 import { createRouter } from 'express-file-routing';
 import cors from 'cors';
 import path from 'path';
 
-const app = express();
+const app: Application = express();
 
 app.use(express.urlencoded());
 app.use(express.json());
@@ -18,7 +19,7 @@ createRouter(app, {
   additionalMethods: ["custom"]
 });
 
-app.use(async (err: any, req: any, res: any, next: any) => {
+app.use(async (err: Error, req: Request, res: Response, next: NextFunction) => {
   if(err) {
     console.log('Error ->', err);
     next(err);
@@ -27,7 +28,7 @@ app.use(async (err: any, req: any, res: any, next: any) => {
   app.use(timeout(120000));
   app.use(haltOnTimedout);
 
-  function haltOnTimedout(req: any, res: any, next: any){
+  function haltOnTimedout(req: any, Request: Response, next: NextFunction){
     if (!req.timedout)
       next();
   };
