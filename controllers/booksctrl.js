@@ -30,7 +30,7 @@ const sequelize_1 = require("sequelize");
  *
  * @returns {Promise<void>} - A promise that resolves when the HTTP response is sent.
  */
-function listbooks(req, res, next) {
+function listbooks(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         var _a;
         try {
@@ -100,7 +100,7 @@ function listbooks(req, res, next) {
  * If no book is found, it sends a 404 Not Found response.
  * If an error occurs, it sends a 500 Internal Server Error response with the error details.
  */
-function getbooks(req, res, next) {
+function getbooks(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             console.log("---------- Get Book Data ----------");
@@ -148,7 +148,7 @@ function getbooks(req, res, next) {
  * If no book is found, it sends a 404 Not Found response.
  * If an error occurs, it sends a 500 Internal Server Error response with the error details.
  */
-function delbooks(req, res, next) {
+function delbooks(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             console.log("---------- Delete Book ----------");
@@ -194,7 +194,7 @@ function delbooks(req, res, next) {
  * If no book is found, it sends a 404 Not Found response.
  * If an error occurs, it sends a 500 Internal Server Error response with the error details.
  */
-function patchbooks(req, res, next) {
+function patchbooks(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             console.log("---------- Update Book ----------");
